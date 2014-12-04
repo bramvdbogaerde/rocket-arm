@@ -47,9 +47,9 @@ func (fsm *FilesetManifest) assertValid() error {
 	if fsm.OS != "linux" {
 		return errors.New(`missing or bad OS (must be "linux")`)
 	}
-	if fsm.Arch != "amd64" {
-		return errors.New(`missing or bad Arch (must be "amd64")`)
-	}
+	//if fsm.Arch != "amd64" {
+	//	return errors.New(`missing or bad Arch (must be "amd64")`)
+	//}
 	return nil
 }
 

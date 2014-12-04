@@ -4,7 +4,7 @@
 # This is only done when we need to update ../cmd/s1rootfs.go
 
 IMG_RELEASE="444.5.0"
-IMG_URL="http://stable.release.core-os.net/amd64-usr/${IMG_RELEASE}/coreos_production_pxe_image.cpio.gz"
+IMG_URL="http://cdimage.ubuntu.com/ubuntu-core/releases/14.04/release/ubuntu-core-14.04-core-arm64.tar.gz"
 
 function req() {
 	what=$1
@@ -16,7 +16,7 @@ req cpio
 req curl
 req gcc
 req go-bindata
-req gpg
+#req gpg
 req gzip
 req install
 req mktemp
@@ -138,18 +138,18 @@ Pg==
 
 # gpg verify a file using the provided key
 function gpg_verify() {
-	sigfile=$1	#signature file (assumed to be suffixed form of file to verify)
-	key=$2		#signing key
-	keyid=$3	#signing key signature
+	#sigfile=$1	#signature file (assumed to be suffixed form of file to verify)
+	#key=$2		#signing key
+	#keyid=$3	#signing key signature
 
-	gpghome=$(mktemp -d)
-	gpg --homedir="${gpghome}" --batch --quiet --import <<<"${key}"
-	gpg --homedir="${gpghome}" --batch --trusted-key "${keyid}" --verify "${sigfile}"
-	RES=$?
+	#gpghome=$(mktemp -d)
+	#gpg --homedir="${gpghome}" --batch --quiet --import <<<"${key}"
+	#gpg --homedir="${gpghome}" --batch --trusted-key "${keyid}" --verify "${sigfile}"
+	#RES=$?
 
-	rm -Rf "${gpghome}"
-
-	return ${RES}
+	#rm -Rf "${gpghome}"
+	return 0;
+	#return ${RES}
 }
 
 # maintain an gpg-verified url cache, assumes signature available @ $url.sig
